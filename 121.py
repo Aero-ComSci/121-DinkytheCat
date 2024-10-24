@@ -9,13 +9,14 @@ font_setup=("Arial", 20, "normal")
 timer = 30
 counter_interval = 1000   
 timer_up = False
+
 #-----game configuration----
 
-spot_turtle = t.Turtle()
-spot_turtle.speed(0)
-spot_turtle.shape("circle")
-spot_turtle.shapesize(10)
-spot_turtle.fillcolor(spot_color)
+dot = t.Turtle()
+dot.speed(0)
+dot.shape("circle")
+dot.shapesize(5)
+dot.fillcolor(spot_color)
 
 score_writer = t.Turtle()
 score_writer.speed(0)
@@ -41,7 +42,7 @@ def countdown():
   if timer <= 0:
     counter.write("Time's Up", font=font_setup)
     timer_up = True
-    spot_turtle.hideturtle()
+    dot.hideturtle()
   else:
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
@@ -55,14 +56,17 @@ def count():
 def change_position():
     newx = rand.randint(-200, 300) 
     newy = rand.randint(-200, 300)
-    spot_turtle.penup() 
-    spot_turtle.goto(newx, newy)
+
+    dot.penup() 
+    dot.goto(newx, newy)
 
 def spot_clicked(x, y):
+    shapelist=["red","blue","green","purple","pink","yellow"]
+    t.dot(rand.choice(shapelist))
     count()  
     change_position()  
 
-spot_turtle.onclick(spot_clicked)
+dot.onclick(spot_clicked)
 change_position()
 
 #-----events----------------
