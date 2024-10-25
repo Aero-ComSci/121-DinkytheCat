@@ -9,6 +9,7 @@ font_setup=("Arial", 20, "normal")
 timer = 30
 counter_interval = 1000   
 timer_up = False
+t.bgcolor("lightblue")
 
 #-----game configuration----
 
@@ -34,7 +35,11 @@ counter.write(timer, font=font_setup)
 
 #-----game functions--------
 
-
+def start():
+   yn =input("type yes to play: ")
+   if yn != 'yes':
+      t.hideturtle
+start()
 
 def countdown():
   global timer, timer_up
@@ -47,6 +52,7 @@ def countdown():
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
     counter.getscreen().ontimer(countdown, counter_interval) 
+
 def count():
     global score 
     score += 1
@@ -61,8 +67,11 @@ def change_position():
     dot.goto(newx, newy)
 
 def spot_clicked(x, y):
-    shapelist=["red","blue","green","purple","pink","yellow"]
-    t.dot(rand.choice(shapelist))
+    dot.stamp()
+    colorlist=["salmon1","sienna3","thistle2","PapayaWhip","MistyRose2","OldLace","goldenrod2","red","blue","khaki3"]
+    shapelist=["classic","triangle","square","turtle"]
+    dot.color(rand.choice(colorlist))
+    dot.shape(rand.choice(shapelist))
     count()  
     change_position()  
 
